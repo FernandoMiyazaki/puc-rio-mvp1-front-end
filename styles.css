@@ -6,10 +6,34 @@ body {
 }
 
 header {
-    background-color: #333;
+    background: url('https://images.wsj.net/im-933698?width=700&size=1.4988290398126465') no-repeat center center; /* Set the background image */
+    background-size: cover; /* Ensure the image covers the header */
+    background-attachment: fixed; /* Fix the background image */
+    height: 30vh; /* Adjust the height of the header */
     color: white;
     text-align: center;
-    padding: 1em 0;
+    overflow: hidden;  /* Ensures that the content is properly contained */
+}
+
+.header-content {
+    position: relative; /* Allows absolute positioning of the title */
+    height: 100%; /* Full height of the header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+    padding: 8em;
+    border-radius: 0px; /* Rounded corners for the title background */
+}
+
+.title h1 {
+    font-size: 2rem;
+    color: white;  /* White text color for the title */
+    margin: 0;  /* Remove default margin */
 }
 
 .newRental {
