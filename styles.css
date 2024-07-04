@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.newRental {
+    background-color: white;
+    margin: 2em auto;
+    padding: 1em;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.newRental h2 {
+    margin-top: 0;
+}
+
+.newRental form {
+    display: flex;
+    flex-direction: column;
+}
+
+.newRental label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.newRental input {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+.newRental button {
+    padding: 0.5em;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.newRental button:hover {
+    background-color: #555;
+}
+
+.rentals {
+    margin: 2em auto;
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rentals table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rentals th, .rentals td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.rentals th {
+    background-color: #f2f2f2;
+}
+
+.rentals tr:hover {
+    background-color: #f1f1f1;
+}
+
+.close {
+    color: red;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: darkred;
+}
