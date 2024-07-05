@@ -6,18 +6,18 @@ body {
 }
 
 header {
-    background: url('https://images.wsj.net/im-933698?width=700&size=1.4988290398126465') no-repeat center center; /* Set the background image */
-    background-size: cover; /* Ensure the image covers the header */
-    background-attachment: fixed; /* Fix the background image */
-    height: 30vh; /* Adjust the height of the header */
+    background: url('https://images.wsj.net/im-933698?width=700&size=1.4988290398126465') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 30vh;
     color: white;
     text-align: center;
-    overflow: hidden;  /* Ensures that the content is properly contained */
+    overflow: hidden;
 }
 
 .header-content {
-    position: relative; /* Allows absolute positioning of the title */
-    height: 100%; /* Full height of the header */
+    position: relative;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,24 +25,32 @@ header {
 }
 
 .title {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+    background: rgba(0, 0, 0, 0.5);
     padding: 8em;
-    border-radius: 0px; /* Rounded corners for the title background */
+    border-radius: 0px;
 }
 
 .title h1 {
     font-size: 2rem;
-    color: white;  /* White text color for the title */
-    margin: 0;  /* Remove default margin */
+    color: white;
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    margin: 2em auto;
+    width: 90%;
+    max-width: 1200px;
 }
 
 .newRental {
     background-color: white;
-    margin: 2em auto;
     padding: 1em;
-    width: 90%;
-    max-width: 400px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
 .newRental h2 {
@@ -75,6 +83,37 @@ header {
 
 .newRental button:hover {
     background-color: #555;
+}
+
+.carDetails {
+    background-color: white;
+    padding: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+}
+
+.carDetails h2 {
+    margin-top: 0;
+}
+
+.carDetails table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.carDetails th, .carDetails td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.carDetails th {
+    background-color: #f2f2f2;
+}
+
+.carDetails tr:hover {
+    background-color: #f1f1f1;
 }
 
 .rentals {

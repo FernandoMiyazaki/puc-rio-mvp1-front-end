@@ -8,12 +8,10 @@ const getRentals = async () => {
   try {
     const response = await fetch(url, { method: 'GET' });
 
-    // Check if the response is okay (status code 200-299)
     if (!response.ok) throw new Error('Failed to fetch rentals');
 
     const data = await response.json();
 
-    // Populate the rental list with data from the server
     data.rentals.forEach(rental => 
       insertRental(rental.id, rental.user_id, rental.car_id, rental.rental_start_date, rental.rental_end_date, rental.total_price)
     );
@@ -25,23 +23,50 @@ const getRentals = async () => {
 
 /*
   --------------------------------------------------------------------------------------
-  Call the function to load initial data when the script is loaded
+  Function to fetch the list of cars from the server via a GET request
   --------------------------------------------------------------------------------------
 */
-getRentals();
+const getCars = async () => {
+  const url = 'http://127.0.0.1:5000/cars';
+  try {
+    const response = await fetch(url, { method: 'GET' });
+
+    if (!response.ok) throw new Error('Failed to fetch cars');
+
+    const data = await response.json();
+
+    data.cars.forEach(car => 
+      insertCar(car.id, car.make, car.model, car.year, car.price_per_day)
+    );
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to fetch cars');
+  }
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Call the functions to load initial data when the script is loaded
+  --------------------------------------------------------------------------------------
+*/
+const initializePage = () => {
+  getRentals();
+  getCars();
+}
+
+initializePage();
 
 /*
   --------------------------------------------------------------------------------------
   Function to send a POST request to the server to add a new rental
   --------------------------------------------------------------------------------------
 */
-const postRental = async (userId, carId, rentalStartDate, rentalEndDate, totalPrice) => {
+const postRental = async (userId, carId, rentalStartDate, rentalEndDate) => {
   const rentalData = new FormData();
   rentalData.append('user_id', userId);
   rentalData.append('car_id', carId);
   rentalData.append('rental_start_date', rentalStartDate);
   rentalData.append('rental_end_date', rentalEndDate);
-  rentalData.append('total_price', totalPrice);
 
   const url = 'http://127.0.0.1:5000/rental';
   try {
@@ -56,7 +81,7 @@ const postRental = async (userId, carId, rentalStartDate, rentalEndDate, totalPr
     }
 
     alert("Rental added successfully!");
-    getRentals();  // Refresh the list of rentals
+    getRentals();
   } catch (error) {
     console.error('Error:', error);
     alert('Error adding rental: ' + error.message);
@@ -70,7 +95,7 @@ const postRental = async (userId, carId, rentalStartDate, rentalEndDate, totalPr
 */
 const insertButton = (parent) => {
   const span = document.createElement("span");
-  const textNode = document.createTextNode("\u00D7");  // Unicode for '×' symbol
+  const textNode = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(textNode);
   parent.appendChild(span);
@@ -85,11 +110,11 @@ const removeElement = () => {
   document.querySelectorAll(".close").forEach(button => {
     button.addEventListener('click', async () => {
       if (confirm("Are you sure you want to delete this rental?")) {
-        const row = button.closest('tr');  // Get the closest <tr> element
-        const rentalId = row.cells[0].textContent;  // Get the rental ID from the first cell
-        row.remove();  // Remove the row from the table
-        await deleteRental(rentalId);  // Call the delete function
-        alert("Rental removed!");  // Notify the user
+        const row = button.closest('tr');
+        const rentalId = row.cells[0].textContent;
+        row.remove();
+        await deleteRental(rentalId); 
+        alert("Rental removed!");
       }
     });
   });
@@ -101,7 +126,7 @@ const removeElement = () => {
   --------------------------------------------------------------------------------------
 */
 const deleteRental = async (rentalId) => {
-  const url = `http://127.0.0.1:5000/rental?id=${encodeURIComponent(rentalId)}`;  // URL with rental ID as a query parameter
+  const url = `http://127.0.0.1:5000/rental?id=${encodeURIComponent(rentalId)}`;
   try {
     const response = await fetch(url, { method: 'DELETE' });
 
@@ -127,19 +152,15 @@ const newRental = () => {
   const carId = document.getElementById("carId").value;
   const rentalStartDate = document.getElementById("rentalStartDate").value;
   const rentalEndDate = document.getElementById("rentalEndDate").value;
-  const totalPrice = document.getElementById("totalPrice").value;
 
-  // Validate input fields
-  if (!userId || !carId || !rentalStartDate || !rentalEndDate || !totalPrice) {
+  if (!userId || !carId || !rentalStartDate || !rentalEndDate) {
     alert("All fields are required!");
   } else if (isNaN(userId) || isNaN(carId)) {
     alert("User ID and Car ID must be numbers!");
-  } else if (isNaN(totalPrice)) {
-    alert("Total price must be a number!");
   } else if (new Date(rentalStartDate) >= new Date(rentalEndDate)) {
     alert("End date must be after start date!");
   } else {
-    postRental(userId, carId, rentalStartDate, rentalEndDate, totalPrice);
+    postRental(userId, carId, rentalStartDate, rentalEndDate);
   }
 }
 
@@ -153,15 +174,29 @@ const insertRental = (id, userId, carId, rentalStartDate, rentalEndDate, totalPr
   const table = document.getElementById('rentalTable');
   const row = table.insertRow();
 
-  // Insert rental data into the table row
   rentalData.forEach((item, index) => {
     const cell = row.insertCell(index);
     cell.textContent = item;
   });
 
-  // Add a close button to the end of the row
   insertButton(row.insertCell(-1));
-  removeElement();  // Attach event listeners to all close buttons
+  removeElement();
+}
+
+/*
+  --------------------------------------------------------------------------------------
+  Function to insert car data into the car details table
+  --------------------------------------------------------------------------------------
+*/
+const insertCar = (id, make, model, year, pricePerDay) => {
+  const carData = [id, make, model, year, pricePerDay];
+  const table = document.getElementById('carTable');
+  const row = table.insertRow();
+
+  carData.forEach((item, index) => {
+    const cell = row.insertCell(index);
+    cell.textContent = item;
+  });
 }
 
 /*
