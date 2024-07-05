@@ -9,4 +9,4 @@ After successfully executing all steps to run the "Car Rental System API", open 
 
 **Car Rental System API:**
 
-[https://github.com/FernandoMiyazaki/puc-rio-mvp1-back-end]
+https://github.com/FernandoMiyazaki/puc-rio-mvp1-back-end
