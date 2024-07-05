@@ -90,6 +90,37 @@ const postRental = async (userId, carId, rentalStartDate, rentalEndDate) => {
 
 /*
   --------------------------------------------------------------------------------------
+  Function to send a POST request to the server to create a new user account
+  --------------------------------------------------------------------------------------
+*/
+const postAccount = async (name, email, password, driverLicenseNumber) => {
+  const accountData = new FormData();
+  accountData.append('name', name);
+  accountData.append('email', email);
+  accountData.append('password', password);
+  accountData.append('driver_license_number', driverLicenseNumber);
+
+  const url = 'http://127.0.0.1:5000/user';
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body: accountData
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to create account');
+    }
+
+    alert("Account created successfully!");
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error creating account: ' + error.message);
+  }
+}
+
+/*
+  --------------------------------------------------------------------------------------
   Function to create a close button for each rental item in the table
   --------------------------------------------------------------------------------------
 */
@@ -166,6 +197,24 @@ const newRental = () => {
 
 /*
   --------------------------------------------------------------------------------------
+  Function to validate input data and call the function to create a new account
+  --------------------------------------------------------------------------------------
+*/
+const newAccount = () => {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const driverLicenseNumber = document.getElementById("driverLicenseNumber").value;
+
+  if (!name || !email || !password || !driverLicenseNumber) {
+    alert("All fields are required!");
+  } else {
+    postAccount(name, email, password, driverLicenseNumber);
+  }
+}
+
+/*
+  --------------------------------------------------------------------------------------
   Function to insert rental data into the displayed table
   --------------------------------------------------------------------------------------
 */
@@ -205,9 +254,27 @@ const insertCar = (id, make, model, year, pricePerDay) => {
   --------------------------------------------------------------------------------------
 */
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('rentalForm');
-  form.addEventListener('submit', (event) => {
+  const rentalForm = document.getElementById('rentalForm');
+  rentalForm.addEventListener('submit', (event) => {
     event.preventDefault();
     newRental();
   });
+
+  const accountForm = document.getElementById('accountForm');
+  accountForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    newAccount();
+  });
+
+  document.querySelectorAll('.tab-link').forEach(link => {
+    link.addEventListener('click', function() {
+      document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      this.classList.add('active');
+      document.getElementById(this.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelector('.tab-link').click();
 });

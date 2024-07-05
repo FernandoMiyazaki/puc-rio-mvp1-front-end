@@ -13,7 +13,49 @@
         </div>
     </header>
 
-    <section class="main">
+    <nav>
+        <ul class="tabs">
+            <li class="tab-link current" data-tab="tab-home">Home</li>
+            <li class="tab-link" data-tab="tab-cars">Available Cars</li>
+            <li class="tab-link" data-tab="tab-rental">Car Rental</li>
+            <li class="tab-link" data-tab="tab-account">Create Account</li>
+        </ul>
+    </nav>
+
+    <section id="tab-home" class="tab-content current">
+        <h2>Welcome to Our Car Rental Service</h2>
+        <img src="https://www.hertz.com/content/dam/hertz/global/blog-articles/resources/one-way-rental.jpg" alt="One Way Rental" class="home-image">
+        <p>We offer a wide variety of cars to suit your needs. Whether you are looking for a compact car for city driving or an SUV for a family trip, we have the perfect car for you. Our rental process is simple and quick. Create an account, browse our available cars, and make a reservation today!</p>
+    </section>
+
+    <section id="tab-cars" class="tab-content">
+        <div class="carDetails">
+            <h2>Available Cars</h2>
+            <table id="carTable">
+                <thead>
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Price per Day ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Car details will be inserted here -->
+                </tbody>
+            </table>
+            <div class="car-images">
+                <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2022/06/2023-Toyota-Corolla-Sedan-EU-Spec-1-e1654192252530.jpg?crop=1&resize=1212,909" alt="Toyota Corolla 2023" class="car-image">
+                <img src="https://s3.sa-east-1.amazonaws.com/revista.mobiauto/Honda/Civic/Type+R/lan%C3%A7amento/Honda+Civic+Type+R+2023+-+abre.JPEG" alt="Honda Civic Type R 2023" class="car-image">
+                <img src="https://carrosbemmontados.com.br/wp-content/uploads/2024/04/FORD-FOCUS-ST-EDITION-2024-5.jpg" alt="Ford Focus ST 2024" class="car-image">
+                <img src="https://hips.hearstapps.com/hmg-prod/images/2019-chevrolet-malibu-rs-124-1568289291.jpg?crop=0.616xw:0.753xh;0.151xw,0.191xh&resize=768:*" alt="Chevrolet Malibu 2019" class="car-image">
+                <img src="https://www.topgear.com/sites/default/files/2022/09/1-BMW-3-Series.jpg" alt="BMW 3 Series" class="car-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="tab-rental" class="tab-content">
         <div class="newRental">
             <h2>Add New Rental</h2>
             <form id="rentalForm">
@@ -32,43 +74,43 @@
                 <button type="submit" id="addRentalBtn">Add Rental</button>
             </form>
         </div>
-
-        <div class="carDetails">
-            <h2>Available Cars</h2>
-            <table id="carTable">
+        <section class="rentals">
+            <table id="rentalTable">
                 <thead>
                     <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
                         <th>Car ID</th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                        <th>Price per Day ($)</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Total Price ($)</th>
+                        <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px" alt="Delete Icon"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Car details will be inserted here -->
+                    <!-- Rentals will be inserted here -->
                 </tbody>
             </table>
-        </div>
+        </section>
     </section>
 
-    <section class="rentals">
-        <table id="rentalTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>User ID</th>
-                    <th>Car ID</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Total Price ($)</th>
-                    <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px" alt="Delete Icon"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Rentals will be inserted here -->
-            </tbody>
-        </table>
+    <section id="tab-account" class="tab-content">
+        <h2>Create Account</h2>
+        <form id="accountForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password" required>
+
+            <label for="driverLicenseNumber">Driver License Number</label>
+            <input type="text" id="driverLicenseNumber" placeholder="Driver License Number" required>
+
+            <button type="submit" id="createAccountBtn">Create Account</button>
+        </form>
     </section>
 
     <script src="scripts.js"></script>

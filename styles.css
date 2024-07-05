@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background: url('https://images.wsj.net/im-933698?width=700&size=1.4988290398126465') no-repeat center center;
+    background: url('https://www.erieinsurance.com/-/media/images/blog/articlephotos/2018/rentalcarlg.ashx?h=529&w=1100&la=en&hash=B6312A1CFBB03D75789956B399BF6B91E7980061') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 30vh;
@@ -36,110 +36,108 @@ header {
     margin: 0;
 }
 
-.main {
-    display: flex;
-    justify-content: space-between;
-    gap: 2em;
-    margin: 2em auto;
-    width: 90%;
-    max-width: 1200px;
+nav {
+    background-color: #333;
+    padding: 0.5em;
+    border-bottom: 2px solid #444;
 }
 
-.newRental {
+.tabs {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: 1em;
+}
+
+.tab-link {
+    color: white;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.tab-link:hover {
+    background-color: #555;
+}
+
+.tab-content {
+    display: none;
+    padding: 2em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.main, .rentals, .newAccount, .newRental {
     background-color: white;
     padding: 1em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    margin: 2em auto;
+    width: 90%;
+    max-width: 800px;
 }
 
-.newRental h2 {
-    margin-top: 0;
-}
-
-.newRental form {
+form {
     display: flex;
     flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.newRental label {
+form label {
     margin-bottom: 0.5em;
     font-weight: bold;
 }
 
-.newRental input {
+form input {
     margin-bottom: 1em;
     padding: 0.5em;
     font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-.newRental button {
+form button {
     padding: 0.5em;
     background-color: #333;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
 }
 
-.newRental button:hover {
+form button:hover {
     background-color: #555;
 }
 
-.carDetails {
-    background-color: white;
-    padding: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 700px;
-}
-
-.carDetails h2 {
-    margin-top: 0;
-}
-
-.carDetails table {
+.carDetails table, .rentals table {
     width: 100%;
     border-collapse: collapse;
+    margin: 2em 0;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.carDetails th, .carDetails td {
+.carDetails th, .carDetails td, .rentals th, .rentals td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    font-size: 1em;
 }
 
-.carDetails th {
+.carDetails th, .rentals th {
     background-color: #f2f2f2;
+    font-weight: bold;
 }
 
-.carDetails tr:hover {
-    background-color: #f1f1f1;
-}
-
-.rentals {
-    margin: 2em auto;
-    width: 90%;
-    max-width: 1200px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.rentals table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.rentals th, .rentals td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-.rentals th {
-    background-color: #f2f2f2;
-}
-
-.rentals tr:hover {
+.carDetails tr:hover, .rentals tr:hover {
     background-color: #f1f1f1;
 }
 
@@ -150,4 +148,29 @@ header {
 
 .close:hover {
     color: darkred;
+}
+
+.home-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1em auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.car-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.car-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
